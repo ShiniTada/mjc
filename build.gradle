@@ -1,0 +1,42 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.2'
+    id 'java'
+    id "org.sonarqube" version "3.3"
+}
+
+springBoot{
+    mainClass.set('com.epam.esm.web.ApplicationRunner')
+}
+
+group 'com.epam'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'org.sonarqube'
+
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+        testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.5.2'
+
+        implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.5.1'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.5.1'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.1'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.5.1'
+        implementation group: 'org.hibernate', name: 'hibernate-envers', version: '5.5.3.Final'
+        implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '2.5.1'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.5.2'
+        implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

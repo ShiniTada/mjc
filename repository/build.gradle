@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+bootJar {
+    enabled = false
+}
+jar{
+    enabled = true
+}
+
+
+group 'com.epam.esm'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'com.h2database:h2:1.4.200'
+}
+
+test {
+    useJUnitPlatform()
+}
+

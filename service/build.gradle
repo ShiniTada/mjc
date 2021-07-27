@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'com.epam.esm'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+bootJar {
+    enabled = false
+}
+jar{
+    enabled = true
+}
+
+dependencies {
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.11.0'
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.11.0'
+
+    implementation project(':repository')
+
+}
+
+test {
+    useJUnitPlatform()
+}
