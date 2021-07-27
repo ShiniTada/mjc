@@ -12,8 +12,12 @@ springBoot{
 group 'com.epam'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
+allprojects {
+    apply plugin: 'jacoco'
+
+    repositories {
+        mavenCentral()
+    }
 }
 subprojects {
     apply plugin: 'java'

@@ -1,5 +1,3 @@
-
-
 package com.epam.esm.service.service.impl;
 
 import com.epam.esm.repository.entity.Tag;
@@ -11,9 +9,9 @@ import com.epam.esm.service.exception.ServiceException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +20,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest(classes = ApplicationRunner.class)
 public class TagServiceImplTest {
 
     private TagServiceImpl tagService;
-    @Mock
+    @MockBean
     private TagRepository tagRepository;
-    @Mock
+    @MockBean
     private TagConverter tagConverter;
 
     @BeforeEach

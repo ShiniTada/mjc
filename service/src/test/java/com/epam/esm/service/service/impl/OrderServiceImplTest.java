@@ -20,24 +20,27 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest(classes = ApplicationRunner.class)
 public class OrderServiceImplTest {
 
     private OrderService orderService;
-    @Mock
+    @MockBean
     private OrderRepository orderRepository;
-    @Mock
+    @MockBean
     private GiftCertificateService giftCertificateService;
-    @Mock
+    @MockBean
     private UserService userService;
-    @Mock
+    @MockBean
     private OrderConverter orderConverter;
-    @Mock
+    @MockBean
     private UserConverter userConverter;
 
     @BeforeEach

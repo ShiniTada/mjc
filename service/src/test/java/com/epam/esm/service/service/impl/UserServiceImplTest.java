@@ -9,9 +9,9 @@ import com.epam.esm.service.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,15 +20,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest(classes = ApplicationRunner.class)
 public class UserServiceImplTest {
 
     private UserServiceImpl userService;
-    @Mock
+    @MockBean
     private UserRepository userRepository;
-    @Mock
+    @MockBean
     private UserConverter userConverter;
-    @Mock
+    @MockBean
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @BeforeEach
