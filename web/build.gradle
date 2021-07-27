@@ -1,9 +1,14 @@
+apply plugin: "war"
+
 repositories {
     mavenCentral()
 }
 bootJar {
     enabled = true
     archiveFileName = 'api.jar'
+}
+war {
+    enabled = true
 }
 
 dependencies {
