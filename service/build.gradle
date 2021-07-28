@@ -1,9 +1,4 @@
-plugins {
-    id 'java'
-}
 
-group 'com.epam.esm'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -11,9 +6,7 @@ repositories {
 bootJar {
     enabled = false
 }
-bootWar{
-    enabled = false
-}
+
 jar{
     enabled = true
 }

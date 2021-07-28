@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class ApplicationRunner {
+
     /**
      * The entry point of application.
      *
