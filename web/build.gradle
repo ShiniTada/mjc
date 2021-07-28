@@ -3,6 +3,10 @@ apply plugin: 'war'
 repositories {
     mavenCentral()
 }
+war {
+    enabled = true
+    archiveFileName = 'web.war'
+}
 
 /*bootJar{
     archiveFileName  = 'apiBootJar.jar'
