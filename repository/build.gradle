@@ -4,9 +4,13 @@ plugins {
 bootJar {
     enabled = false
 }
+bootWar{
+    enabled = false
+}
 jar{
     enabled = true
 }
+
 
 
 group 'com.epam.esm'
