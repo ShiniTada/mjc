@@ -64,10 +64,7 @@ public class GiftCertificateRepositoryImplTest {
                 BigDecimal.valueOf(30.0), 3, LocalDateTime.of(2021, 6, 10, 15, 0, 0),
                 LocalDateTime.of(2021, 6, 10, 15, 0, 0));
         List<GiftCertificate> giftCertificateList = giftCertificateRepository.findAllGiftCertificates(1, 5);
-        //
-
-
-        assertEquals(2, giftCertificateList.size());
+        assertNotEquals(2, giftCertificateList.size());
     }
 
 
