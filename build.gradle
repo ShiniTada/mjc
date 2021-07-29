@@ -52,22 +52,22 @@ subprojects {
 
     test {
         useJUnitPlatform()
-        //finalizedBy jacocoTestReport
+        finalizedBy jacocoTestReport
     }
-
-   jacocoTestReport {
+    jacocoTestReport {
         dependsOn test
         reports {
             xml.enabled true
-            csv.enabled true
-            html.enabled true
         }
     }
 }
 
 sonarqube {
     properties {
-        property('sonar.login', 'ce165fb9bc90dba2994c72925d1dec9cd69a2893')
-       // property('sonar.jacoco.xmlReportPath', '${project.buildDir}/jacoco/test.exec')
+        property('sonar.login', 'e29d9083ef254c50054918f08ea9b1165b10a3a6')
+        property('sonar.host.url', 'http://localhost:9000')
     }
 }
+
+
+
