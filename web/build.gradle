@@ -1,24 +1,20 @@
-
 apply plugin: 'war'
+
 repositories {
     mavenCentral()
 }
 
-    war {
-        archivesBaseName = 'Certificates'
-        version '1.0.0'
-    }
-
-
-/*bootJar{
-    archiveFileName  = 'apiBootJar.jar'
+bootJar {
+    enabled = true
+    archiveFileName = 'api.jar'
 }
+
 war {
     enabled = true
-}*/
+}
+
 dependencies {
     implementation project(':service')
     implementation project(':repository')
-   providedRuntime group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.3.5.RELEASE'
 }
 
