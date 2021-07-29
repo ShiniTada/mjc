@@ -18,6 +18,7 @@ allprojects {
     repositories {
         mavenCentral()
     }
+
 }
 
 subprojects {
@@ -49,7 +50,6 @@ subprojects {
         implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
     }
-
     test {
         useJUnitPlatform()
         finalizedBy jacocoTestReport
@@ -68,6 +68,8 @@ sonarqube {
         property('sonar.host.url', 'http://localhost:9000')
     }
 }
+
+
 
 
 
