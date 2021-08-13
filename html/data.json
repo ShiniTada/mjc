@@ -1,0 +1,56 @@
+[
+    {
+        "name" : "Certificate sport",
+        "price": 10,
+        "duration": 10,
+        "image": ""
+    },
+	{
+        "name" : "Certificate spa",
+        "price": 20,
+        "duration": 20,
+        "image": ""
+    },
+	{
+        "name" : "Certificate quest",
+        "price": 30,
+        "duration": 30,
+        "image": ""
+    },
+	{
+        "name" : "Certificate master class",
+        "price": 40,
+        "duration": 40,
+        "image": ""
+    },
+	{
+        "name" : "Certificate pizza",
+        "price": 50,
+        "duration": 50,
+        "image": ""
+    },
+	{
+        "name" : "Certificate food",
+        "price": 60,
+        "duration": 60,
+        "image": ""
+    },
+	{
+        "name" : "Certificate drink",
+        "price": 70,
+        "duration": 70,
+        "image": ""
+    },
+	{
+        "name" : "Certificate birthday",
+        "price": 80,
+        "duration": 80,
+        "image": ""
+    },
+	{
+        "name" : "Certificate New Year",
+        "price": 90,
+        "duration": 90,
+        "image": ""
+    }
+]
