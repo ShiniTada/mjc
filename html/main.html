@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <title>
+        Main
+    </title>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container2">
+            <div class="header_inner">
+                <div class="header_logo">Logo</div>
+                <div class="search">
+                    <input class="search_input" id="searchWord" type="text" placeholder="Search..">
+
+                    <select type=text class="search_select" id="search">
+                        <option>by name</option>
+                        <option>by description</option>
+                        <option>by tag</option>
+                    </select>
+
+                    <input type="submit" class="search_submit" value="Search" onclick="loadData()">
+                </div>
+                <nav class=" nav">
+                    <a href=""><img src="../assets/images/favorite.svg"></a>
+                    <a href=""><img src="../assets/images/shop.svg"></a>
+                    <a class="nav_link" href="">Login</a>
+                    <a class="nav_link" href="register.html">Sign up</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="indent_from_header"></div>
+    <div class="container" id="container"> </div>
+
+    <div class="button-wrapper">
+        <button onclick="addShowButton()" class="show" id="show" style="display: none;">Show</button>
+    </div>
+    <button onclick=" upFunction()" id="myBtnUp">Up</button>
+    <button onclick="topFunction()" id="myBtnTop">Top</button>
+
+    <script type="text/javascript" src='../assets/data.js'></script>
+    <script src="../scripts/createCertificate.js"></script>
+    <script src="../scripts/search.js"></script>
+
+</body>
+
+</html>

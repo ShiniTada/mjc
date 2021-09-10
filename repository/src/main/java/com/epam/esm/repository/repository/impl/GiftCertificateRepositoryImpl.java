@@ -66,5 +66,13 @@ public class GiftCertificateRepositoryImpl implements GiftCertificateRepository 
     public void deleteGiftCertificate(GiftCertificate giftCertificate) {
         session.remove(giftCertificate);
     }
+
+    @Override
+    public long getTotalNumberItems(){
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<GiftCertificate> criteriaQuery = criteriaBuilder.createQuery(GiftCertificate.class);
+        criteriaQuery.from(GiftCertificate.class);
+        return session.createQuery(criteriaQuery).getResultList().size();
+    }
 }
 

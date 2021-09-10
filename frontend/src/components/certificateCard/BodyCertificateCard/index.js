@@ -1,0 +1,1 @@
+export { default as BodyCertificateCard } from './BodyCertificateCard.jsx'

@@ -1,0 +1,15 @@
+.form-login {
+    padding-top: 100px;
+}
+
+.login {   
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: left;
+}
+.form-group {
+    margin-bottom: 10px;
+    font-size: 16px;
+}

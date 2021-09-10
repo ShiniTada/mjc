@@ -1,0 +1,368 @@
+body {
+  background: #D3D3D3;
+}
+.container2 {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  width:100%;
+background: #fff;
+margin: 0;
+padding: 0;
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+z-index: 1000;
+padding-top: 10px;
+}
+.header_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header_logo {
+  font-size: 30px;
+  color: #333;
+  font-weight: 700;
+  text-decoration: none;
+}
+.nav {
+  font-size: 14px;
+}
+.nav_link {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+  transition: color .1s linear;
+}
+.nav_link:hover{
+  color: blue;
+}
+
+.login_form {
+ width:400px;
+ height: 200px;
+background: #fff;
+ margin:200px auto 0 auto;
+ text-align: center;
+}
+
+input[type="email"],input[type="password"]{
+ width: 350px;
+ height:25px;
+ font-size: 18px;
+ margin-bottom: 25px;
+ border-radius: 4px;
+ padding-left: 10px;
+}
+.login_form img{
+ width:40px;
+ height:40px;
+ margin: 0 0 10px 0;
+ border: 5px solid #1a394f;
+ border-radius: 50%;
+
+}
+.dws-submit {
+ margin: 5px 0 20px 0;
+ font-size: 15px;
+ color: #fff;
+ border-bottom: 4px solid #6ee9fd;
+ padding: 13px 30px;
+ background-color: d1ffd1;
+ border: none;
+ cursor: pointer;
+  display:flex;
+  justify-content: center;
+}
+.dws-submit:hover{
+ transition: all 0.5s;
+ background: #fff;
+ color: #2c536c;
+}
+.submit_create{
+  font-size: 15px;
+  color: #fff;
+  border-bottom: 4px solid #6ee9fd;
+  padding: 13px 30px;
+  background-color: d1ffd1;
+  border: none;
+  cursor: pointer;
+  margin: 0 200px 0 200px;
+   display:flex;
+   justify-content: center;
+}
+.submit_create:hover {
+  transition: all 0.5s;
+  background: #fff;
+  color: #2c536c;
+}
+.search {
+  margin: 0 0 10px 0;
+}
+.search_input {  
+      box-sizing: 300px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: white;      
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      padding: 5px 10px 5px 30px;
+}
+.search_select {  
+      box-sizing: 10px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: white;      
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      padding: 5px 5px 5px 5px;
+}
+.search_submit {  
+      box-sizing: 10px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: white;     
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      padding: 5px 5px 5px 5px;
+}
+
+.container_search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_certificate {
+width: auto;
+margin: 0 200px 20px 200px;
+height: 300px;
+background: #fff;
+display: flex;
+justify-content: space-around;
+}
+
+.h2 {
+  background: #D3D3D3;
+  width:700px;
+  margin: 100px 80px 0 200px;
+  color: #fff;
+  font-size: 30px;
+}
+
+.input_one_string .input{
+  width: 280px;
+  height:25px;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.leght {
+width:300px;
+height: 300px;
+}
+.right {
+  width:300px;
+  height: 300px;
+}
+.textarea {
+  padding-bottom:200px;
+  font-size:16px;
+  height: 200px;
+  width: 280px;
+}
+.cart_link {
+
+  text-decoration: none;
+  transition: color .1s linear;
+}
+.cart_link:hover{
+  color: blue;
+}
+
+.text-title {
+  font-family: Oswald;
+  font-size: 18px;
+  font-weight: 570;
+  margin: 10px auto 10px auto;
+}
+.text {
+  margin: 0 0 10px 0;
+}
+.add_cart {
+  display:flex;
+  justify-content: center;
+  padding: 13px 30px;
+  font-size: 15px;
+  color: #fff;
+  background-color: d1ffd1;
+  border: none;
+  cursor: pointer;
+   margin: 0 200px 0 200px;
+}
+.indent_from_header {
+  margin: 130px 0 0 0;
+  width: 100%;
+  height: 1px;
+}
+.container {
+margin: auto;
+}
+.certificate_card {
+  margin: 10px auto 10px 30px;
+  width: 150px;
+  height: 180px;
+  padding: 20px 20px 20px 30px;
+  background-color: #fff;
+  display: inline-block;
+}
+.certificate_card.hide {
+  display: none;
+}
+.certificate_card img {
+  height: 110px;
+  width: 140px;
+    border: 2px solid #8b8e4b; /* Параметры рамки */
+   }
+.checkout {
+  width: auto;
+  margin: 0 400px 20px 200px;
+  height: 330px;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+}
+.checkout_submit {
+  font-size: 15px;
+  color: #fff;
+  border-bottom: 4px solid #6ee9fd;
+  padding: 13px 30px;
+  background-color: d1ffd1;
+  border: none;
+  cursor: pointer;
+  margin: 0 400px 0 550px;
+   display:flex;
+   justify-content: center;
+}
+
+.checkout_submit:hover{
+ transition: all 0.5s;
+ background: #fff;
+ color: #2c536c;
+}
+/* The Loading Animation */
+.loading{
+  display: flex;
+justify-content: center;
+  align-items: flex-end;
+    width: 150px;
+    height: 70px;
+    margin-bottom: 30px;
+    margin: 0 0 0 510px;
+    }
+
+.ball{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: black;
+    margin: 0 10px;
+}
+.first{
+    animation: slide 2s  ease-in-out infinite ;
+    animation-delay: .1s;
+}
+.second{
+    animation: slide 2s ease-in-out infinite;
+    animation-delay: .5s;
+}
+.third{
+    animation: slide 2s ease-in-out infinite;
+    animation-delay: 1s;
+}
+@keyframes slide{
+    from{
+        transform: translateY(-30px);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 130px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  opacity: 0.8;
+}
+
+#myBtnUp {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtnUp:hover {
+  opacity: 0.8;
+}
+#show {
+display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  color: #333;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}

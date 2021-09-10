@@ -57,4 +57,6 @@ public interface GiftCertificateRepository {
      * @param giftCertificate the gift certificate
      */
     void deleteGiftCertificate(GiftCertificate giftCertificate);
+
+    long getTotalNumberItems();
 }

@@ -1,6 +1,7 @@
 package com.epam.esm.service.service;
 
 import com.epam.esm.service.dto.GiftCertificateDto;
+import com.epam.esm.service.dto.PaginationDto;
 
 import java.util.List;
 
@@ -52,4 +53,6 @@ public interface GiftCertificateService {
      * @return giftCertificateDtos list
      */
     List<GiftCertificateDto> findCertificates(int page, int size, List<String> tags, String name, String description, String dateSort, String nameSort);
+
+    PaginationDto createPaginationDto(List<GiftCertificateDto> giftCertificateDtos);
 }

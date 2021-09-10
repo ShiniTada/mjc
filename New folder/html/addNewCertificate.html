@@ -1,0 +1,63 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
+          rel="stylesheet">
+    <title>
+        Add new certificate
+    </title>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header_inner">
+            <div class="header_logo">Logo</div>
+            <form>
+                <input class="search_input" type="text" name="search" placeholder="Search..">
+            </form>
+            <nav class="nav">
+                <a href=""><img src="../assets/images/favorite.svg"></a>
+                <a href=""><img src="../assets/images/shop.svg"></a>
+                <a class="nav_link" href="">Login</a>
+                <a class="nav_link" href="register.html">Sign up</a>
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="h2">
+    <h2> Add new certificate</h2>
+</div>
+
+<div class=form_certificate>
+    <div class="left">
+        <p>Enter certificate name:</p>
+        <div class="input_one_string">
+            <input class="input" type="text" name="certificateName" placeholder="Enter certificate name">
+        </div>
+        <p>Enter certificate price:</p>
+        <div class="input_one_string">
+            <input class="input" type="number" name="price" placeholder="Enter certificate price">
+        </div>
+        <p>Enter certificate duration:</p>
+        <input type="date" min="2021-08-04" name="duration">
+        <div class="input_one_string">
+            <input class="input" type="number" name="duration" placeholder="Enter certificate duration">
+        </div>
+    </div>
+    <div class="right">
+        <p>Enter certificate description:</p>
+        <textarea class="textarea" id="textComment" name="certifivateDescription"
+                  placeholder="Enter certificate description"></textarea>
+    </div>
+
+
+</div>
+<div class="submit_create">
+    <input type="submit" name="submit" value="Create">
+</div>
+</div>
+
+<footer>
+</footer>
+</body>
+</html>

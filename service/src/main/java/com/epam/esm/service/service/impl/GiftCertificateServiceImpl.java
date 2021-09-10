@@ -7,6 +7,7 @@ import com.epam.esm.repository.specification.Specification;
 import com.epam.esm.repository.specification.SpecificationBuilder;
 import com.epam.esm.service.converter.GiftCertificateConverter;
 import com.epam.esm.service.dto.GiftCertificateDto;
+import com.epam.esm.service.dto.PaginationDto;
 import com.epam.esm.service.exception.ResourceNotFoundException;
 import com.epam.esm.service.exception.ServiceException;
 import com.epam.esm.service.service.GiftCertificateService;
@@ -119,6 +120,14 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
             return giftCertificates.stream().map(giftCertificateConverter::convertToGiftCertificateDto)
                     .collect(Collectors.toList());
         }
+    }
+    @Override
+    public PaginationDto createPaginationDto(List<GiftCertificateDto> giftCertificateDtoList){
+        PaginationDto paginationDto = new PaginationDto();
+        paginationDto.setGiftCertificateDtoList(giftCertificateDtoList);
+        long totalNumberItems = giftCertificateRepository.getTotalNumberItems();
+        paginationDto.setTotalNumberItems(totalNumberItems);
+        return paginationDto;
     }
 
     private void checkFieldsToUpdate(String nameUpdate, String descriptionUpdate, BigDecimal priceUpdate, int durationUpdate, GiftCertificate giftCertificate) {

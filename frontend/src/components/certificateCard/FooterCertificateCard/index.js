@@ -1,0 +1,1 @@
+export { default as FooterCertificateCard } from './FooterCertificateCard.jsx'

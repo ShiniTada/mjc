@@ -1,0 +1,1 @@
+export { default as DeleteCertificate } from './DeleteCertificate.jsx'

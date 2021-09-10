@@ -1,6 +1,7 @@
 package com.epam.esm.web.controller;
 
 import com.epam.esm.service.dto.GiftCertificateDto;
+import com.epam.esm.service.dto.PaginationDto;
 import com.epam.esm.service.dto.TagDto;
 import com.epam.esm.service.service.GiftCertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,8 +80,9 @@ public class GiftCertificateController {
      * @param nameSort    sort by name
      * @return response entity
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/certificates")
-    public ResponseEntity<List<GiftCertificateDto>> findCertificates(
+    public ResponseEntity<PaginationDto> findCertificates(
             @Valid @RequestParam(value = VALUE_PAGE, required = false, defaultValue = DEFAULT_PAGE)
             @Min(1) int page,
             @Valid @RequestParam(value = VALUE_SIZE, required = false, defaultValue = DEFAULT_SIZE)
@@ -96,7 +98,8 @@ public class GiftCertificateController {
             buildCertificateLinks(giftCertificateDto);
             buildTagsLinks(giftCertificateDto);
         });
-        return new ResponseEntity<>(giftCertificateDtos, HttpStatus.OK);
+        PaginationDto paginationDto = giftCertificateService.createPaginationDto(giftCertificateDtos);
+        return new ResponseEntity<>(paginationDto, HttpStatus.OK);
     }
 
     /**
