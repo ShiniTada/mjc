@@ -1,6 +1,7 @@
 package com.epam.esm.repository.repository;
 
 import com.epam.esm.repository.entity.GiftCertificate;
+import com.epam.esm.repository.specification.Pagination;
 import com.epam.esm.repository.specification.Specification;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public interface GiftCertificateRepository {
      *
      * @param page page
      * @param size size
-     * @return certificates list
+     * @return pagination
      */
-    List<GiftCertificate> findAllGiftCertificates(int page, int size);
+    Pagination findAllGiftCertificates(int page, int size);
 
     /**
      * Find certificates with parameters
@@ -32,9 +33,9 @@ public interface GiftCertificateRepository {
      * @param page           page
      * @param size           size
      * @param specifications specifications list
-     * @return giftCertigicates list
+     * @return Pagination
      */
-    List<GiftCertificate> findCertificatesWithParams(int page, int size, List<Specification> specifications);
+    Pagination findCertificatesWithParams(int page, int size, List<Specification> specifications);
 
     /**
      * Find gift certificate by certificate id
@@ -58,5 +59,5 @@ public interface GiftCertificateRepository {
      */
     void deleteGiftCertificate(GiftCertificate giftCertificate);
 
-    long getTotalNumberItems();
+    /*long getTotalNumberItems();*/
 }

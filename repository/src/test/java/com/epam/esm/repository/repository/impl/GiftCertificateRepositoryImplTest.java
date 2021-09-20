@@ -1,3 +1,4 @@
+/*
 
 
 package com.epam.esm.repository.repository.impl;
@@ -130,3 +131,4 @@ public class GiftCertificateRepositoryImplTest {
 
 
 
+*/

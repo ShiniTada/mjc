@@ -2,6 +2,7 @@ package com.epam.esm.repository.repository.impl;
 
 import com.epam.esm.repository.entity.GiftCertificate;
 import com.epam.esm.repository.repository.GiftCertificateRepository;
+import com.epam.esm.repository.specification.Pagination;
 import com.epam.esm.repository.specification.Specification;
 import com.epam.esm.repository.specification.impl.CertificatesBySpecification;
 import org.hibernate.Session;
@@ -33,19 +34,23 @@ public class GiftCertificateRepositoryImpl implements GiftCertificateRepository 
     }
 
     @Override
-    public List<GiftCertificate> findAllGiftCertificates(int page, int size) {
+    public Pagination findAllGiftCertificates(int page, int size) {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<GiftCertificate> criteriaQuery = criteriaBuilder.createQuery(GiftCertificate.class);
         criteriaQuery.from(GiftCertificate.class);
-        return session.createQuery(criteriaQuery).setFirstResult((page - 1) * size).setMaxResults(size).getResultList();
+        List<GiftCertificate> giftCertificates = session.createQuery(criteriaQuery).setFirstResult((page - 1) * size).setMaxResults(size).getResultList();
+        long count = session.createQuery(criteriaQuery).getResultList().size();
+        return new Pagination(giftCertificates, count);
     }
 
     @Override
-    public List<GiftCertificate> findCertificatesWithParams(int page, int size, List<Specification> specifications) {
+    public Pagination findCertificatesWithParams(int page, int size, List<Specification> specifications) {
         CertificatesBySpecification specification = new CertificatesBySpecification();
         TypedQuery<GiftCertificate> query = session.createQuery(SELECT_CERTIFICATES_WITH_PARAMS + specification.buildQuery(specifications), GiftCertificate.class);
         query = specification.buildParams(query, specifications);
-        return query.setFirstResult((page - 1) * size).setMaxResults(size).getResultList();
+        long count = query.getResultList().size();
+        List<GiftCertificate> giftCertificates = query.setFirstResult((page - 1) * size).setMaxResults(size).getResultList();
+        return new Pagination(giftCertificates, count);
     }
 
     @Override
@@ -65,14 +70,6 @@ public class GiftCertificateRepositoryImpl implements GiftCertificateRepository 
     @Override
     public void deleteGiftCertificate(GiftCertificate giftCertificate) {
         session.remove(giftCertificate);
-    }
-
-    @Override
-    public long getTotalNumberItems(){
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<GiftCertificate> criteriaQuery = criteriaBuilder.createQuery(GiftCertificate.class);
-        criteriaQuery.from(GiftCertificate.class);
-        return session.createQuery(criteriaQuery).getResultList().size();
     }
 }
 

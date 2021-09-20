@@ -1,38 +1,25 @@
 import { React } from 'react';
 import { Form } from 'react-bootstrap';
 import changeSizeAction from '../../../store/actions/ChangeSizeAction';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
-function CountItems({ setSize }) {
-    const defaultValueSize = 10;
-
-    const handleChangeSize = (e) => {
-        setSize(e.target.value);
-    }
+function CountItems({ size }) {
+    const dispatch = useDispatch();
 
     return (
         <Form.Select aria-label="Default select example" fixed="bottom" style={{ margin: '10px 0 0 0' }}
-            defaultValue={defaultValueSize} onChange={handleChangeSize}>
+            defaultValue={size} onChange={(e) => dispatch(changeSizeAction(e.target.value))}>
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>
         </Form.Select>
     );
 }
-/*function mapStateToProps(state) {
-    return {
-        size: state.size,
-        page: state.page,
-        count: state.totalNumberItems
-    }
-}*/
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
     return {
-        setSize: (size) => {
-            dispatch(changeSizeAction(size))
-        }
+        size: state.size
     }
 }
 
-export default connect(mapDispatchToProps)(CountItems);
+export default connect(mapStateToProps, null)(CountItems);

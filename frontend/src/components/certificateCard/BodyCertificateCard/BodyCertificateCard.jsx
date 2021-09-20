@@ -1,17 +1,15 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import './bodyCertificateCard.css';
 
 function BodyCertificateCard({ description, durationInDays, tags }) {
     let tagsList = [];
     for (let i = 0; i < tags.length; i++) {
         let tag;
-        if (i != (tags.length - 1)) {
+        if (i !== (tags.length - 1)) {
             tag = tags[i].name + ', ';
         } else {
             tag = tags[i].name;
         }
-        //let tag = tags[i].name + ', ';
         tagsList.push(<mark key={tags[i].id} style={{ background: '#b9fac4' }}>{tag}</mark>);
     }
     return (

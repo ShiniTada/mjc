@@ -50,9 +50,9 @@ public interface GiftCertificateService {
      * @param description part of certificate description
      * @param dateSort    sort by date
      * @param nameSort    sort by name
-     * @return giftCertificateDtos list
+     * @return PaginationDto
      */
-    List<GiftCertificateDto> findCertificates(int page, int size, List<String> tags, String name, String description, String dateSort, String nameSort);
+    PaginationDto findCertificates(int page, int size, List<String> tags, String name, String description, String dateSort, String nameSort);
 
-    PaginationDto createPaginationDto(List<GiftCertificateDto> giftCertificateDtos);
+   // PaginationDto createPaginationDto(List<GiftCertificateDto> giftCertificateDtos);
 }

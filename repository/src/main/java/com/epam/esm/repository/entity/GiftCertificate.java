@@ -32,10 +32,14 @@ public class GiftCertificate {
     @Column(name = "last_update_date")
     private LocalDateTime lastUpdateDate;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+  /*  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "tag_certificate",
             joinColumns = {@JoinColumn(name = "id_certificate", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "id_tag", nullable = false)})
+            inverseJoinColumns = {@JoinColumn(name = "id_tag", nullable = false)})*/
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+  @JoinTable(name = "tag_certificate",
+          joinColumns = {@JoinColumn(name = "id_certificate", nullable = false)},
+          inverseJoinColumns = {@JoinColumn(name = "id_tag", nullable = false)})
     private List<Tag> tags;
 
     public GiftCertificate() {

@@ -3,9 +3,12 @@ package com.epam.esm.service.service.impl;
 import com.epam.esm.repository.entity.GiftCertificate;
 import com.epam.esm.repository.entity.Tag;
 import com.epam.esm.repository.repository.GiftCertificateRepository;
+import com.epam.esm.repository.specification.Pagination;
 import com.epam.esm.repository.specification.Specification;
 import com.epam.esm.repository.specification.SpecificationBuilder;
 import com.epam.esm.service.converter.GiftCertificateConverter;
+import com.epam.esm.service.converter.PaginationConverter;
+import com.epam.esm.service.converter.TagConverter;
 import com.epam.esm.service.dto.GiftCertificateDto;
 import com.epam.esm.service.dto.PaginationDto;
 import com.epam.esm.service.exception.ResourceNotFoundException;
@@ -35,6 +38,8 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
     private final GiftCertificateRepository giftCertificateRepository;
     private final TagService tagService;
     private final GiftCertificateConverter giftCertificateConverter;
+    private final PaginationConverter paginationConverter;
+    private final TagConverter tagConverter;
 
     /**
      * Instantiates a new Gift certificate service.
@@ -45,18 +50,21 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
      */
     @Autowired
     public GiftCertificateServiceImpl(GiftCertificateRepository giftCertificateRepository, TagService tagService,
-                                      GiftCertificateConverter giftCertificateConverter) {
+                                      GiftCertificateConverter giftCertificateConverter, PaginationConverter paginationConverter, TagConverter tagConverter) {
         this.giftCertificateRepository = giftCertificateRepository;
         this.tagService = tagService;
         this.giftCertificateConverter = giftCertificateConverter;
+        this.paginationConverter = paginationConverter;
+        this.tagConverter = tagConverter;
     }
 
     @Transactional
     @Override
     public GiftCertificateDto createGiftCertificate(GiftCertificateDto giftCertificateDto) {
         GiftCertificate giftCertificate = giftCertificateConverter.convertToGiftCertificate(giftCertificateDto);
-        List<Tag> tags = tagService.createRelation(giftCertificate);
-        giftCertificate.setTags(tags);
+       List<Tag> tags = tagService.createRelation(giftCertificate);
+
+       giftCertificate.setTags(tags);
         LocalDateTime createDate = LocalDateTime.now();
         giftCertificate.setCreateDate(createDate);
         giftCertificate.setLastUpdateDate(createDate);
@@ -82,8 +90,11 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
         String descriptionUpdate = giftCertificateDto.getDescription();
         BigDecimal priceUpdate = giftCertificateDto.getPrice();
         int durationUpdate = giftCertificateDto.getDurationInDays();
+        List<Tag> tags = giftCertificateDto.getTags().stream().map(tagConverter::convertToTag)
+                .collect(Collectors.toList());
         GiftCertificate giftCertificate = giftCertificateRepository.findGiftCertificateById(id);
         if (giftCertificate != null) {
+            giftCertificate.setTags(tags);
             checkFieldsToUpdate(nameUpdate, descriptionUpdate, priceUpdate, durationUpdate, giftCertificate);
             giftCertificateRepository.updateGiftCertificate(giftCertificate);
             GiftCertificate giftCertificateNew = giftCertificateRepository.findGiftCertificateById(giftCertificate.getId());
@@ -104,30 +115,23 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
         }
     }
 
+    @Transactional
     @Override
-    public List<GiftCertificateDto> findCertificates(int page, int size, List<String> tagNames, String partName, String partDescription, String dateSort, String nameSort) {
+    public PaginationDto findCertificates(int page, int size, List<String> tagNames, String partName, String partDescription, String dateSort, String nameSort) {
         SpecificationBuilder specificationBuilder = new SpecificationBuilder();
         List<Specification> specifications = specificationBuilder.buildSpecification(tagNames, partName, partDescription, dateSort, nameSort);
         List<GiftCertificate> giftCertificates;
+        Pagination pagination;
         if (CollectionUtils.isNotEmpty(specifications)) {
-            giftCertificates = giftCertificateRepository.findCertificatesWithParams(page, size, specifications);
+            pagination = giftCertificateRepository.findCertificatesWithParams(page, size, specifications);
         } else {
-            giftCertificates = giftCertificateRepository.findAllGiftCertificates(page, size);
+            pagination = giftCertificateRepository.findAllGiftCertificates(page, size);
         }
-        if (giftCertificates == null || giftCertificates.isEmpty()) {
+        if (pagination.getGiftCertificateList() == null || pagination.getGiftCertificateList().isEmpty()) {
             throw new ResourceNotFoundException(THE_CERTIFICATE_IS_NOT_FOUND);
         } else {
-            return giftCertificates.stream().map(giftCertificateConverter::convertToGiftCertificateDto)
-                    .collect(Collectors.toList());
+            return paginationConverter.convertToPaginationDto(pagination);
         }
-    }
-    @Override
-    public PaginationDto createPaginationDto(List<GiftCertificateDto> giftCertificateDtoList){
-        PaginationDto paginationDto = new PaginationDto();
-        paginationDto.setGiftCertificateDtoList(giftCertificateDtoList);
-        long totalNumberItems = giftCertificateRepository.getTotalNumberItems();
-        paginationDto.setTotalNumberItems(totalNumberItems);
-        return paginationDto;
     }
 
     private void checkFieldsToUpdate(String nameUpdate, String descriptionUpdate, BigDecimal priceUpdate, int durationUpdate, GiftCertificate giftCertificate) {

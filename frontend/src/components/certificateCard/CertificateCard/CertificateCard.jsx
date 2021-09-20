@@ -10,9 +10,8 @@ function CertificateCard({ item }) {
         <Card >
             <HeaderCertificateCard name={item.name} createDate={item.createDate} />
             <BodyCertificateCard description={item.description} durationInDays={item.durationInDays} tags={item.tags} />
-            <FooterCertificateCard price={item.price} />
+            <FooterCertificateCard certificate={item} />
         </Card>
     );
-
 }
 export default CertificateCard;

@@ -18,6 +18,6 @@ public class SpecificationByName implements Specification {
 
     @Override
     public String buildHqlRequest() {
-        return BY_NAME;
+        return BY_NAME + " OR c.description LIKE CONCAT('%', :partName, '%')) ";
     }
 }

@@ -7,7 +7,7 @@ public final class ParameterName {
     public static final String SORT_BY_DATE = " c.createDate ";
     public static final String GROUP_BY_ID = " group by c.id having count(t)= :tagSize ";
     public static final String BY_TAG = " JOIN c.tags t  WHERE t.name in :tags ";
-    public static final String BY_NAME = " c.name LIKE CONCAT('%', :partName, '%') ";
+    public static final String BY_NAME = "( c.name LIKE CONCAT('%', :partName, '%') ";
     public static final String BY_DESCRIPTION = " c.description LIKE CONCAT('%', :partDescription, '%') ";
 
     public static final String WHERE = " WHERE ";

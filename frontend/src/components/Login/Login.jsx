@@ -1,34 +1,84 @@
 import React, { useState } from 'react';
 import './login.css';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Alert } from 'react-bootstrap';
+import { getToken } from '../../service/api';
+import setIsAuthAction from '../../store/actions/SetAuth';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import setIsAdminAction from '../../store/actions/SetAdmin';
+import setEmailAction from '../../store/actions/SetEmailAction';
 
-function Login() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+function Login({ setIsAuth, setIsAdmin, setEmailAction }) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const [show, setShow] = useState(false);
+    const history = useHistory();
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        getToken({
+            email: email,
+            password: password
+        }).then(response => {
+            window.localStorage.setItem('email', response.data.email);
+            window.localStorage.setItem('token', response.data.token);
+            if (response.status == 200) {
+                setIsAuth(true);
+                window.localStorage.setItem('auth', 'true');
+                let details = jwt_decode(response.data.token);
+                setEmailAction(details.sub);
+                if (details.roles == 'ADMIN') {
+                    window.localStorage.setItem('admin', 'true');
+                    setIsAdmin(true);
+                }
+                history.push('/certificates');
+            }
+        }).catch((error) => {
+            console.log(error)
+            setShow(true);
+            let message = error.response.data.errorMessage;
+            setError(message);
+        })
+    }
 
     return (
-        <div className="login">
-            <form className='form-login'>
-                <h3>Log in</h3>
-                <div className="form-group">
-                    <label>Email</label><br />
-                    <input type="email" className="form-control" placeholder="Enter email"
+        <Container style={{ marginBottom: '100px' }}>
+            <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    < Form.Label > Email address</Form.Label >
+                    <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} />
+                </Form.Group >
 
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                </Form.Group>
 
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Password</label><br />
-                    <input type="password" className="form-control" placeholder="Enter password" />
-                </div>
-                <div className="form-group">
-                    <div className='error-message-login'>
+                {error == null && <div style={{ color: '#D3D3D3' }}>Check your password, it must be 3-200 characters and try again</div>}
+                {show && <Alert variant='danger' onClose={() => setShow(false)} dismissible>{error}</Alert>}
 
-                    </div>
-                </div>
-                <button type="submit" className="">Sign in</button>
-            </form >
-        </div>);
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    Submit
+                </Button>
+            </Form >
+        </Container >
+    )
 }
 
-export default Login;
+function mapDispatchToProps(dispatch) {
+    return {
+        setIsAuth: (isAuth) => {
+            dispatch(setIsAuthAction(isAuth))
+        },
+        setIsAdmin: (isAdmin) => {
+            dispatch(setIsAdminAction(isAdmin))
+        },
+        setEmailAction: (email) => {
+            dispatch(setEmailAction(email))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login);

@@ -45,6 +45,7 @@ public class GiftCertificateController {
      * @param giftCertificateDto the gift certificate dto
      * @return response entity
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/certificates")
     public ResponseEntity<GiftCertificateDto> createGiftCertificate(@Valid @RequestBody GiftCertificateDto giftCertificateDto) {
@@ -93,12 +94,12 @@ public class GiftCertificateController {
             @RequestParam(value = "dateSort", required = false) String dateSort,
             @RequestParam(value = "nameSort", required = false) String nameSort
     ) {
-        List<GiftCertificateDto> giftCertificateDtos = giftCertificateService.findCertificates(page, size, tags, name, description, dateSort, nameSort);
-        giftCertificateDtos.forEach(giftCertificateDto -> {
+        PaginationDto paginationDto = giftCertificateService.findCertificates(page, size, tags, name, description, dateSort, nameSort);
+        paginationDto.getGiftCertificateDtoList().forEach(giftCertificateDto -> {
             buildCertificateLinks(giftCertificateDto);
             buildTagsLinks(giftCertificateDto);
         });
-        PaginationDto paginationDto = giftCertificateService.createPaginationDto(giftCertificateDtos);
+        //PaginationDto paginationDto = giftCertificateService.createPaginationDto(giftCertificateDtos);
         return new ResponseEntity<>(paginationDto, HttpStatus.OK);
     }
 
@@ -109,8 +110,9 @@ public class GiftCertificateController {
      * @param giftCertificateDto the gift certificate dto
      * @return response entity
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PatchMapping(value = "/certificates/{id}")
+    @PutMapping(value = "/certificates/{id}")
     public ResponseEntity<GiftCertificateDto> updateGiftCertificate(@Min(1) @PathVariable long id,
                                                                     @RequestBody(required = false) GiftCertificateDto giftCertificateDto) {
         giftCertificateDto.setId(id);
@@ -128,6 +130,7 @@ public class GiftCertificateController {
      * @param id the certificate id
      * @return response entity
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(value = "/certificates/{id}")
     public ResponseEntity<Void> deleteGiftCertificate(@Min(1) @PathVariable long id) {

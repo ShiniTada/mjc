@@ -40,6 +40,7 @@ public class AuthenticationController {
      * @param requestDto request token dto
      * @return response token dto
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/login")
     public ResponseTokenDto login(@RequestBody @Valid RequestTokenDto requestDto) {
         return authenticationService.getAuthenticationResult(requestDto);
