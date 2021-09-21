@@ -62,9 +62,8 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
     @Override
     public GiftCertificateDto createGiftCertificate(GiftCertificateDto giftCertificateDto) {
         GiftCertificate giftCertificate = giftCertificateConverter.convertToGiftCertificate(giftCertificateDto);
-       List<Tag> tags = tagService.createRelation(giftCertificate);
-
-       giftCertificate.setTags(tags);
+        List<Tag> tags = tagService.createRelation(giftCertificate);
+        giftCertificate.setTags(tags);
         LocalDateTime createDate = LocalDateTime.now();
         giftCertificate.setCreateDate(createDate);
         giftCertificate.setLastUpdateDate(createDate);

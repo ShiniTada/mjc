@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import setIsAuthAction from '../../store/actions/SetAuth';
 import { CreateCertificate } from "../modals/CreateCertificate";
 
+
 function NavBar({ isAuth, setIsAuth, isAdmin }) {
     const [editVisable, setEditVisable] = useState(false)
 

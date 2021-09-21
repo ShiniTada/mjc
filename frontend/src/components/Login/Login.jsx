@@ -57,7 +57,11 @@ function Login({ setIsAuth, setIsAdmin, setEmailAction }) {
                 </Form.Group>
 
                 {error == null && <div style={{ color: '#D3D3D3' }}>Check your password, it must be 3-200 characters and try again</div>}
-                {show && <Alert variant='danger' onClose={() => setShow(false)} dismissible>{error}</Alert>}
+                {show && <Alert variant='danger' style={{ display: 'flex', 'justifyContent': 'space-between' }}>{error}
+                    <Button onClick={() => setShow(false)} variant="danger">
+                        Close
+                    </Button>
+                </Alert>}
 
                 <Button variant="primary" type="submit" onClick={handleSubmit}>
                     Submit
